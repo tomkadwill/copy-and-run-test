@@ -5,7 +5,7 @@
   "description": "A short description of your package",
   "keywords": [],
   "activationCommands": {
-    "atom-workspace": "copy-and-run-test:toggle"
+    "atom-workspace": "copy-and-run-test"
   },
   "repository": "https://github.com/atom/copy-and-run-test",
   "license": "MIT",

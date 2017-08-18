@@ -15,7 +15,7 @@ describe('CopyAndRunTest', () => {
     activationPromise = atom.packages.activatePackage('copy-and-run-test');
   });
 
-  describe('when the copy-and-run-test:toggle event is triggered', () => {
+  describe('when the copy-and-run-test event is triggered', () => {
     it('hides and shows the modal panel', () => {
       // Before the activation event the view is not on the DOM, and no panel
       // has been created
@@ -23,7 +23,7 @@ describe('CopyAndRunTest', () => {
 
       // This is an activation event, triggering it will cause the package to be
       // activated.
-      atom.commands.dispatch(workspaceElement, 'copy-and-run-test:toggle');
+      atom.commands.dispatch(workspaceElement, 'copy-and-run-test');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -37,7 +37,7 @@ describe('CopyAndRunTest', () => {
 
         let copyAndRunTestPanel = atom.workspace.panelForItem(copyAndRunTestElement);
         expect(copyAndRunTestPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'copy-and-run-test:toggle');
+        atom.commands.dispatch(workspaceElement, 'copy-and-run-test');
         expect(copyAndRunTestPanel.isVisible()).toBe(false);
       });
     });
@@ -55,7 +55,7 @@ describe('CopyAndRunTest', () => {
 
       // This is an activation event, triggering it causes the package to be
       // activated.
-      atom.commands.dispatch(workspaceElement, 'copy-and-run-test:toggle');
+      atom.commands.dispatch(workspaceElement, 'copy-and-run-test');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -65,7 +65,7 @@ describe('CopyAndRunTest', () => {
         // Now we can test for view visibility
         let copyAndRunTestElement = workspaceElement.querySelector('.copy-and-run-test');
         expect(copyAndRunTestElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'copy-and-run-test:toggle');
+        atom.commands.dispatch(workspaceElement, 'copy-and-run-test');
         expect(copyAndRunTestElement).not.toBeVisible();
       });
     });
