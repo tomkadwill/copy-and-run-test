@@ -1,0 +1,5 @@
+{
+  "atom-workspace": {
+    "ctrl-alt-o": "copy-and-run-test:toggle"
+  }
+}

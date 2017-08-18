@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle copy-and-run-test",
+        "command": "copy-and-run-test:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "copy-and-run-test",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "copy-and-run-test:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
