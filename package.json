@@ -7,7 +7,7 @@
   "activationCommands": {
     "atom-workspace": "copy-and-run-test"
   },
-  "repository": "https://github.com/atom/copy-and-run-test",
+  "repository": "https://github.com/tomkadwill/copy-and-run-test",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
