@@ -1,5 +1,6 @@
 {
   "atom-workspace": {
-    "ctrl-alt-o": "copy-and-run-test"
+    "ctrl-alt-t": "copy-and-run-test",
+    "ctrl-alt-c": "copy-and-run-test-under-cursor"
   }
 }
