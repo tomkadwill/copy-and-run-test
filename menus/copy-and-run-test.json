@@ -15,8 +15,12 @@
           "label": "copy-and-run-test",
           "submenu": [
             {
-              "label": "Run",
+              "label": "Run all tests in file",
               "command": "copy-and-run-test"
+            },
+            {
+              "label": "Run test under the cursor",
+              "command": "copy-and-run-test-under-cursor"
             }
           ]
         }
