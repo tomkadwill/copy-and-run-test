@@ -4,9 +4,6 @@
   "version": "0.1.2",
   "description": "Copies the file path of the current test file, switches to the console and runs it.",
   "keywords": [],
-  "activationCommands": {
-    "atom-workspace": "copy-and-run-test-under-cursor"
-  },
   "repository": "https://github.com/tomkadwill/copy-and-run-test",
   "license": "MIT",
   "engines": {
