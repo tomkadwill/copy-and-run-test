@@ -12,12 +12,11 @@ describe('copyAndRunCommand', () => {
     beforeEach(() => {
       waitsForPromise(function() {
         return atom.workspace.open(path.join(atom.project.getPaths()[0], 'test', 'controllers', 'application_controller_test.rb'));
+        atom.workspace.getActiveTextEditor().setCursorBufferPosition(new Point(0, 0));
       });
     });
 
     it('runs minitest', () => {
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setCursorBufferPosition(new Point(0, 0));
       expect(CopyAndRunTest.copyAndRunCommand()).toBe('rails test test/controllers/application_controller_test.rb')
     });
   });
@@ -26,12 +25,11 @@ describe('copyAndRunCommand', () => {
     beforeEach(() => {
       waitsForPromise(function() {
         return atom.workspace.open(path.join(atom.project.getPaths()[0], 'spec', 'controllers', 'application_controller_spec.rb'));
+        atom.workspace.getActiveTextEditor().setCursorBufferPosition(new Point(0, 0));
       });
     });
 
     it('runs RSpec', () => {
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setCursorBufferPosition(new Point(0, 0));
       expect(CopyAndRunTest.copyAndRunCommand()).toBe('bundle exec rspec spec/controllers/application_controller_spec.rb')
     })
   })
@@ -48,9 +46,8 @@ describe('copyAndRunLineUnderCursorCommand', () => {
     });
 
     it('runs minitest', () => {
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setCursorBufferPosition(new Point(1, 1));
-      expect(CopyAndRunTest.copyAndRunLineUnderCursorCommand()).toBe('rails test test/controllers/application_controller_test.rb:1')
+      atom.workspace.getActiveTextEditor().setCursorBufferPosition([2, 2]);
+      expect(CopyAndRunTest.copyAndRunLineUnderCursorCommand()).toBe('rails test test/controllers/application_controller_test.rb:3')
     });
   });
 
@@ -62,9 +59,40 @@ describe('copyAndRunLineUnderCursorCommand', () => {
     });
 
     it('runs RSpec', () => {
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setCursorBufferPosition(new Point(1, 1));
-      expect(CopyAndRunTest.copyAndRunLineUnderCursorCommand()).toBe('bundle exec rspec spec/controllers/application_controller_spec.rb:1')
+      atom.workspace.getActiveTextEditor().setCursorBufferPosition([2, 2]);
+      expect(CopyAndRunTest.copyAndRunLineUnderCursorCommand()).toBe('bundle exec rspec spec/controllers/application_controller_spec.rb:3')
+    })
+  })
+});
+
+describe('copyAndRunRerun', () => {
+  let workspaceElement, activationPromise;
+
+  describe('minitest file', () => {
+    beforeEach(() => {
+      waitsForPromise(function() {
+        return atom.workspace.open(path.join(atom.project.getPaths()[0], 'test', 'controllers', 'application_controller_test.rb'));
+      });
+    });
+
+    it('runs minitest', () => {
+      atom.workspace.getActiveTextEditor().setCursorBufferPosition([2, 2]);
+      CopyAndRunTest.storeCommand(CopyAndRunTest.copyAndRunLineUnderCursorCommand());
+      expect(CopyAndRunTest.copyAndRunRerunCommand()).toBe('rails test test/controllers/application_controller_test.rb:3')
+    });
+  });
+
+  describe('RSpec file', () => {
+    beforeEach(() => {
+      waitsForPromise(function() {
+        return atom.workspace.open(path.join(atom.project.getPaths()[0], 'spec', 'controllers', 'application_controller_spec.rb'));
+      });
+    });
+
+    it('runs RSpec', () => {
+      atom.workspace.getActiveTextEditor().setCursorBufferPosition([2, 2]);
+      CopyAndRunTest.storeCommand(CopyAndRunTest.copyAndRunLineUnderCursorCommand());
+      expect(CopyAndRunTest.copyAndRunRerunCommand()).toBe('bundle exec rspec spec/controllers/application_controller_spec.rb:3')
     })
   })
 });
