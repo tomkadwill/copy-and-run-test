@@ -10,8 +10,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "node-osascript": "^2.0.0",
-    "platformio-atom-ide-terminal": "^2.8.4"
+    "node-osascript": "^2.0.0"
   },
   "consumedServices": {
     "platformioIDETerminal": {
